@@ -454,6 +454,7 @@ class VoxelGridPhantom:
         """
         print("VoxelGridPhantom")
         print(f"size = {self.size}")
+
         # Center slice
         if plot_slice == "center":
             s = self.PD.shape[2] // 2
@@ -488,6 +489,7 @@ class VoxelGridPhantom:
         plt.figure(figsize=(12, rows * 3))
 
         # Plot the basic maps
+        #  NOTE: custom imshow here, adjust for brain/prostate
         plt.subplot(rows, cols, 1)
         plt.title("PD")
         imshow(self.PD[:, :, s], vmin=0)
@@ -510,7 +512,7 @@ class VoxelGridPhantom:
 
         plt.subplot(rows, cols, 5)
         plt.title("D")
-        imshow(self.D[:, :, s], vmin=0)
+        imshow(self.D[..., s], vmin=0)
         plt.colorbar()
 
         plt.subplot(rows, cols, 7)
